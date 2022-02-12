@@ -1,16 +1,18 @@
 #!/bin/bash
 
+unzip data.zip || exit 1
+
 echo "#################"
 echo "    COMPILING    "
 echo "#################"
 
-make || exit 1
+make || exit 2
 
 echo "#################"
 echo "     RUNNING     "
 echo "#################"
 
-./network || exit 2
+./network || exit 3
 
 
 echo "#################"
