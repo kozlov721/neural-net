@@ -9,8 +9,8 @@
 #define SAMPLE_SIZE 784
 #define CLASSES 10
 
-void test_and_export(Network &model, const Array &test_x, const Array &test_y,
-                     const std::string &file_name) {
+void test_and_export(Network &model, const Array &test_x,
+        const std::string &file_name) {
     std::vector<int> predicted(TEST_SAMPLES);
     for (int i = 0; i < TEST_SAMPLES; ++i) {
         predicted[i] = model.forward_pass(test_x.get_row(i)).argmax();
@@ -48,8 +48,8 @@ void start_training() {
     std::cout << "Test accuracy: " << std::fixed << std::setw(4)
               << std::setprecision(2) << accuracy * 100.f << " %" << std::endl;
 
-    test_and_export(model, X, y, "trainPredictions.csv");
-    test_and_export(model, test_x, test_y, "testPredictions.csv");
+    test_and_export(model, X, "trainPredictions.csv");
+    test_and_export(model, test_x, "testPredictions.csv");
 
     std::cout << "Predictions exported." << std::endl;
 }

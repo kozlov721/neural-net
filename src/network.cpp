@@ -101,7 +101,7 @@ void Network::train(const Matrix &x_train, const Matrix &y_train,
 }
 
 void Network::update_params(const vector_of_weights &grad, const float rate) {
-    for (int i = 0; i < weights.size(); ++i) {
+    for (long unsigned int i = 0; i < weights.size(); ++i) {
         momentum[i] = 0.9 * momentum[i] - rate * grad[i];
         weights[i] = weights[i] + momentum[i];
     }
