@@ -1,24 +1,20 @@
 #!/bin/bash
 
-cd src || exit 1
-
 echo "#################"
 echo "    COMPILING    "
 echo "#################"
 
-make || exit 2
+make || exit 1
 
 echo "#################"
 echo "     RUNNING     "
 echo "#################"
 
-./network
+./network || exit 2
 
 
 echo "#################"
 echo "   EVALUATING    "
 echo "#################"
 
-cd ..
-
-python3 ./python_evaluator/evaluate.py actualPredictions.csv data/fashion_mnist_test_labels.csv
+./evaluate testPredictions.csv data/fashion_mnist_test_labels.csv
