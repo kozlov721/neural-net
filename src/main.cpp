@@ -26,10 +26,10 @@ void test_and_export(Network &model, const Array &test_x, const Array &test_y,
 void start_training() {
     Network model({28 * 28, 100, 10});
 
-    Array X("../data/fashion_mnist_train_vectors.csv", TRAIN_SAMPLES,
+    Array X("data/fashion_mnist_train_vectors.csv", TRAIN_SAMPLES,
             SAMPLE_SIZE);
     Array y = one_hot_encoding(
-        Vector("../data/fashion_mnist_train_labels.csv", TRAIN_SAMPLES, 1),
+        Vector("data/fashion_mnist_train_labels.csv", TRAIN_SAMPLES, 1),
         CLASSES);
     X = X / 255.f - 0.5;
 
@@ -37,10 +37,10 @@ void start_training() {
 
     model.train(X, y, 10, 0.01, true);
 
-    Array test_x("../data/fashion_mnist_test_vectors.csv", TEST_SAMPLES,
+    Array test_x("data/fashion_mnist_test_vectors.csv", TEST_SAMPLES,
                  SAMPLE_SIZE);
     Array test_y = one_hot_encoding(
-        Vector("../data/fashion_mnist_test_labels.csv", TEST_SAMPLES, 1),
+        Vector("data/fashion_mnist_test_labels.csv", TEST_SAMPLES, 1),
         CLASSES);
     test_x = test_x / 255.f - 0.5;
 
@@ -48,8 +48,8 @@ void start_training() {
     std::cout << "Test accuracy: " << std::fixed << std::setw(4)
               << std::setprecision(2) << accuracy * 100.f << " %" << std::endl;
 
-    test_and_export(model, X, y, "../trainPredictions.csv");
-    test_and_export(model, test_x, test_y, "../actualPredictions.csv");
+    test_and_export(model, X, y, "trainPredictions.csv");
+    test_and_export(model, test_x, test_y, "testPredictions.csv");
 
     std::cout << "Predictions exported." << std::endl;
 }
